@@ -11,6 +11,13 @@
 <h:body>
    <h:outputLabel value="Hello, world"/>
    <br />
+   <h:link outcome="admin/admin_index" value="To admin page"/>
+   <br />
+   <h:link outcome="trainer/trainer_index" value="To trainer page"/>
+   <br />
+   <h:link outcome="client/client_index" value="To client page"/>
+   <br />
+   <br />
    <h:link outcome="#{accountBean.toRegistration()}" value="Registration new account"/>
 </h:body>
 </html>

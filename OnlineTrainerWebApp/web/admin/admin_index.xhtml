@@ -12,6 +12,10 @@
 
 <h:body>
     <h1>Hi admin!</h1>
+    Current user: #{userSession.userName}
+    <h:form>
+        <h:commandButton value="Logout" action="#{userSession.logout()}" />
+    </h:form>
 </h:body>
 
 </html>

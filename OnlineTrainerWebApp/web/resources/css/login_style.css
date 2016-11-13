@@ -1,0 +1,43 @@
+body {
+    background-color: #74C35A;
+}
+
+.loginForm {
+    display: block;
+    width: 350px;
+    margin: 200px auto;
+    text-align: center;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 0 10px 0 #686868;
+}
+
+input[name="j_username"], input[name="j_password"],input[type="submit"] {
+    border: 0px solid transparent;
+    width: 300px;
+    height: 30px;
+    margin: 5px;
+    text-align: center;
+    color: #BCBCBC;
+
+}
+
+input[name="j_username"], input[name="j_password"] {
+    background-color: #F2F2F2;
+}
+
+input[type="submit"] {
+    color: white;
+    background-color: #00B242;
+}
+
+.createAccount {
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: #BCBCBC;
+}
+
+.createAccount a {
+    color: #00B242;
+}

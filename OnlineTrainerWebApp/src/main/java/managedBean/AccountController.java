@@ -57,6 +57,11 @@ public class AccountController {
     }
 
     public String toRegistration() {
+        login = "";
+        password = "";
+        name = "";
+        surname = "";
+        dob = null;
         return "registration";
     }
 
