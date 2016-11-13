@@ -1,0 +1,48 @@
+body {
+    background-color: #74C35A;
+}
+
+.registerForm {
+    display: block;
+    background-color: white;
+    width: 400px;
+    margin: 150px auto;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px 0 #686868;
+    color: red;
+}
+
+.registerGroup {
+    margin: auto;
+}
+
+input[type="text"], input[type="password"], input[type="submit"] {
+    border: 0px solid transparent;
+    width: 300px;
+    height: 30px;
+    margin: 5px;
+    text-align: center;
+}
+
+input[type="text"], input[type="password"] {
+    color: #BCBCBC;
+    background-color: #F2F2F2;
+}
+
+input[type="submit"] {
+    color: white;
+    background-color: #00B242;
+}
+
+.radioBlock {
+    margin-left: 50px;
+}
+
+.radioBlock input~label {
+    color: #BCBCBC;
+}
+
+.radioBlock input:checked~label {
+    color: black;
+}

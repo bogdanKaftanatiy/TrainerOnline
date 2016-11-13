@@ -9,8 +9,13 @@ import entity.Trainer;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import java.util.Date;
 
 /**
@@ -63,6 +68,28 @@ public class AccountController {
         surname = "";
         dob = null;
         return "registration";
+    }
+
+    public void validateFrom(ComponentSystemEvent event) {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        UIComponent components = event.getComponent();
+        String groupID = components.getClientId();
+
+        UIInput uiInputLogin = (UIInput) components.findComponent("login");
+        String login = uiInputLogin.getLocalValue() == null ? "" : uiInputLogin.getLocalValue().toString();
+        UIInput uiInputPass = (UIInput) components.findComponent("pass");
+        String pass = uiInputPass.getLocalValue() == null ? "" : uiInputPass.getLocalValue().toString();
+        UIInput uiInputName = (UIInput) components.findComponent("name");
+        String name = uiInputName.getLocalValue() == null ? "" : uiInputName.getLocalValue().toString();
+        UIInput uiInputSurname = (UIInput) components.findComponent("surname");
+        String surname = uiInputSurname.getLocalValue() == null ? "" : uiInputSurname.getLocalValue().toString();
+
+        if(login.isEmpty() || pass.isEmpty() || name.isEmpty() || surname.isEmpty()) {
+            FacesMessage msg = new FacesMessage("Fill all input fields");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            fc.addMessage(groupID, msg);
+            fc.renderResponse();
+        }
     }
 
     public String getLogin() {
