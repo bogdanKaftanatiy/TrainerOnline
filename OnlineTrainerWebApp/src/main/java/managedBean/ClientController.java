@@ -10,7 +10,10 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Bogdan Kaftanatiy
@@ -39,11 +42,15 @@ public class ClientController {
         logger.info("Update current client");
     }
 
-    public Client getClient(){
+    public Client getCurrentClient(){
         if(currentClient == null){
             setClient();
         }
         return currentClient;
+    }
+
+    public void setCurrentClient(Client currentClient) {
+        this.currentClient = currentClient;
     }
 
     public String getCurrentTrainer() {
@@ -62,6 +69,14 @@ public class ClientController {
         currentClient.setTrainer(trainer);
         clientDao.updateObject(currentClient);
         return "trainerPage?faces-redirect=true";
+    }
+
+    public String getDOB() {
+        Calendar birth = Calendar.getInstance(Locale.ROOT);
+        birth.setTime(currentClient.getDob());
+        String result = birth.get(Calendar.DATE) + "." + birth.get(Calendar.MONTH) +
+                "." + birth.get(Calendar.YEAR);
+        return result;
     }
 
     public List<Trainer> getTrainerList() {

@@ -33,23 +33,23 @@
             <table>
                 <tr>
                     <td>Login: </td>
-                    <td>#{clientBean.client.login}</td>
+                    <td>#{clientBean.currentClient.login}</td>
                 </tr>
                 <tr>
                     <td>Password: </td>
-                    <td>#{clientBean.client.password}</td>
+                    <td>#{clientBean.currentClient.password}</td>
                 </tr>
                 <tr>
                     <td>Name: </td>
-                    <td>#{clientBean.client.name}</td>
+                    <td>#{clientBean.currentClient.name}</td>
                 </tr>
                 <tr>
                     <td>Surname: </td>
-                    <td>#{clientBean.client.surname}</td>
+                    <td>#{clientBean.currentClient.surname}</td>
                 </tr>
                 <tr>
                     <td>Date of birth: </td>
-                    <td>#{clientBean.client.dob.date}.#{clientBean.client.dob.month + 1}.#{clientBean.client.dob.year}</td>
+                    <td>#{clientBean.DOB}</td>
                 </tr>
             </table>
             <h:form>

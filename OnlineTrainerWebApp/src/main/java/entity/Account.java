@@ -2,7 +2,9 @@ package entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Users accounts
@@ -78,6 +80,20 @@ public abstract class Account implements Serializable {
 
     public void setDob(Date dob) {
         this.dob = dob;
+    }
+
+    public int getAge() {
+        Date currentDate = new Date();
+        Calendar current = Calendar.getInstance(Locale.ROOT);
+        current.setTime(currentDate);
+
+        Calendar birth = Calendar.getInstance(Locale.ROOT);
+        birth.setTime(dob);
+        int diff = current.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
+        if(birth.get(Calendar.DAY_OF_YEAR) > birth.get(Calendar.DAY_OF_YEAR)) {
+            diff--;
+        }
+        return diff;
     }
 
     @Override

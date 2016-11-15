@@ -18,7 +18,7 @@ public class Trainer extends Account {
     private String description;
 
     public Trainer() {
-        clients = new ArrayList<Client>();
+        clients = new ArrayList<>();
     }
 
     public Trainer(String login, String password, String name, String surname, Date dob) {
@@ -62,20 +62,6 @@ public class Trainer extends Account {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getAge() {
-        Date currentDate = new Date();
-        Calendar current = Calendar.getInstance(Locale.ROOT);
-        current.setTime(currentDate);
-
-        Calendar birth = Calendar.getInstance(Locale.ROOT);
-        birth.setTime(dob);
-        int diff = current.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
-        if(birth.get(Calendar.DAY_OF_YEAR) > birth.get(Calendar.DAY_OF_YEAR)) {
-            diff--;
-        }
-        return diff;
     }
 
     public void addClient(Client client) {

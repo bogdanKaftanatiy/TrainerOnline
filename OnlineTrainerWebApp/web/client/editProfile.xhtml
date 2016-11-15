@@ -28,25 +28,25 @@
             <table>
                 <tr>
                     <td>Login: </td>
-                    <td><h:inputText value="#{clientBean.client.login}"/></td>
+                    <td><h:inputText value="#{clientBean.currentClient.login}"/></td>
                 </tr>
                 <tr>
                     <td>Password: </td>
-                    <td><h:inputText value="#{clientBean.client.password}"/></td>
+                    <td><h:inputText value="#{clientBean.currentClient.password}"/></td>
                 </tr>
                 <tr>
                     <td>Name: </td>
-                    <td><h:inputText value="#{clientBean.client.name}"/></td>
+                    <td><h:inputText value="#{clientBean.currentClient.name}"/></td>
                 </tr>
                 <tr>
                     <td>Surname: </td>
-                    <td><h:inputText value="#{clientBean.client.surname}"/></td>
+                    <td><h:inputText value="#{clientBean.currentClient.surname}"/></td>
                 </tr>
                 <tr>
                     <td>Date of birth: </td>
                     <td>
-                        <h:inputText id="dob" value="#{clientBean.client.dob}">
-                            <f:convertDateTime pattern="dd-mm-yyyy" />
+                        <h:inputText id="dob" value="#{clientBean.currentClient.dob}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
                         </h:inputText>
                         <h:message for="dob" style="color: red;"/>
                     </td>
