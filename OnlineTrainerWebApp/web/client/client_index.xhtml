@@ -8,14 +8,25 @@
 
 <h:head>
     <title>Index client page</title>
+    <h:outputStylesheet library="css" name="client_index.css" />
 </h:head>
 
 <h:body>
-    <h1>Hi client!</h1>
-    Current user: #{userSession.userName}
-    <h:form>
-        <h:commandButton value="Logout" action="#{userSession.logout()}" />
-    </h:form>
+    <div class="contentBlock">
+    <div class="leftMenu">
+        <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
+        <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
+        <p><h:link value="Training list" outcome="#{clientBean.toProfile()}" /></p>
+        <p><h:link outcome="/index" value="To Home Page" /></p>
+        <h:form>
+            <h:commandLink value="Logout" action="#{userSession.logout()}" />
+        </h:form>
+    </div>
+    <div class="dataBlock">
+        <h1>Hi, #{clientBean.client.name}!</h1>
+        Current user: #{userSession.userName}
+    </div>
+    </div>
 </h:body>
 
 </html>

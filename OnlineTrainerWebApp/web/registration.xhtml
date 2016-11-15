@@ -36,11 +36,13 @@
                 <h:message for="dateInput" style="color:red" />
             </h:panelGroup>
             <h:panelGroup>
-                <h:selectOneRadio styleClass="radioBlock" value="#{accountBean.role}">
+                <h:selectOneRadio id="radio" required="true" styleClass="radioBlock" value="#{accountBean.role}">
                     <f:selectItem itemValue="client" itemLabel="Client" />
                     <f:selectItem itemValue="trainer" itemLabel="Trainer" />
                     <f:selectItem itemValue="admin" itemLabel="Admin" />
                 </h:selectOneRadio>
+                <br />
+                <h:message for="radio" style="color: red;" />
             </h:panelGroup>
         </h:panelGrid>
         <h:message for="RegisterGroupPanel" style="color: red;" />

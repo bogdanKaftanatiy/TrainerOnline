@@ -8,14 +8,18 @@
 
 <h:head>
     <title>Index trainer page</title>
+    <h:outputStylesheet library="css" name="trainer_index.css" />
 </h:head>
 
 <h:body>
-    <h1>Hi trainer!</h1>
-    Current user: #{userSession.userName}
-    <h:form>
-        <h:commandButton value="Logout" action="#{userSession.logout()}" />
-    </h:form>
+    <div class="contentBlock">
+        <h1>Hi trainer!</h1>
+        Current user: #{userSession.userName}
+        <p><h:link outcome="/index" value="To Home Page" /></p>
+        <h:form>
+            <h:commandButton value="Logout" action="#{userSession.logout()}" />
+        </h:form>
+    </div>
 </h:body>
 
 </html>

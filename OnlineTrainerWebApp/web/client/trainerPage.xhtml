@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Trainer page</title>
+    <h:outputStylesheet library="css" name="client_index.css" />
+</h:head>
+
+<h:body>
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
+            <p><h:link value="Training list" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <div>
+                Current trainer: #{clientBean.currentTrainer}
+                <h:form>
+                    <h:commandLink value="Change trainer" action="#{clientBean.toTrainerList()}" />
+                </h:form>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>

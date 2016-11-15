@@ -1,21 +1,21 @@
 package entity;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 
 /**
  * @author Bogdan Kaftanatiy
  */
 @Entity
 @DiscriminatorValue("TRAINER")
+@NamedQuery(query = "SELECT t FROM Trainer t", name = "Trainer.getAll")
 public class Trainer extends Account {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "trainer")
     private List<Client> clients;
+    @Column(name = "rating")
+    private double rating;
+    @Column(name = "description")
+    private String description;
 
     public Trainer() {
         clients = new ArrayList<Client>();
@@ -27,6 +27,55 @@ public class Trainer extends Account {
         this.name = name;
         this.surname = surname;
         this.dob = dob;
+    }
+
+    public Trainer(String login, String password, String name, String surname, Date dob, double rating) {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.dob = dob;
+        this.rating = rating;
+    }
+
+    public Trainer(String login, String password, String name, String surname, Date dob, double rating, String description) {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.dob = dob;
+        this.rating = rating;
+        this.description = description;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getAge() {
+        Date currentDate = new Date();
+        Calendar current = Calendar.getInstance(Locale.ROOT);
+        current.setTime(currentDate);
+
+        Calendar birth = Calendar.getInstance(Locale.ROOT);
+        birth.setTime(dob);
+        int diff = current.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
+        if(birth.get(Calendar.DAY_OF_YEAR) > birth.get(Calendar.DAY_OF_YEAR)) {
+            diff--;
+        }
+        return diff;
     }
 
     public void addClient(Client client) {

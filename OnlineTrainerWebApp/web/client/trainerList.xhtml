@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Title</title>
+    <h:outputStylesheet library="css" name="client_index.css" />
+</h:head>
+
+<h:body>
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Trainer" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Training list" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <div>
+                <h:form>
+                    Filter by rating: <h:inputText id="rating" value="#{clientBean.minRating}" /> <br />
+                    <h:message for="rating" style="color: red;" />
+                    <h:commandLink value="Filter" action="#{clientBean.filter()}" />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Age</th>
+                                <th>Rating</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <ui:repeat value="#{clientBean.trainerList}" var="trainer">
+                            <tr>
+                                <td>#{trainer.name}</td>
+                                <td>#{trainer.surname}</td>
+                                <td>#{trainer.age}</td>
+                                <td>#{trainer.rating}</td>
+                                <td>#{trainer.description}</td>
+                                <td><h:commandLink value="Choose" action="#{clientBean.chooseTrainer(trainer)}" /> </td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @author Bogdan Kaftanatiy
  */
-@ManagedBean(name = "userSession")
+@ManagedBean(name = "userSession", eager = true)
 @SessionScoped
 public class UserSession {
     private String userName;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Bogdan Kaftanatiy
+  Date: 14.11.2016
+  Time: 13:33
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Client profile</title>
+    <h:outputStylesheet library="css" name="client_index.css" />
+</h:head>
+
+<h:body>
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
+            <p><h:link value="Training list" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <h2>Your profile</h2>
+            <table>
+                <tr>
+                    <td>Login: </td>
+                    <td>#{clientBean.client.login}</td>
+                </tr>
+                <tr>
+                    <td>Password: </td>
+                    <td>#{clientBean.client.password}</td>
+                </tr>
+                <tr>
+                    <td>Name: </td>
+                    <td>#{clientBean.client.name}</td>
+                </tr>
+                <tr>
+                    <td>Surname: </td>
+                    <td>#{clientBean.client.surname}</td>
+                </tr>
+                <tr>
+                    <td>Date of birth: </td>
+                    <td>#{clientBean.client.dob.date}.#{clientBean.client.dob.month + 1}.#{clientBean.client.dob.year}</td>
+                </tr>
+            </table>
+            <h:form>
+                <h:commandLink value="Edit" action="#{clientBean.toEdit()}" />
+            </h:form>
+        </div>
+    </div>
+</h:body>
+
+</html>

@@ -7,17 +7,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
    <title>Index page</title>
+   <h:outputStylesheet library="css" name="index_style.css" />
 </h:head>
 <h:body>
-   <h:outputLabel value="Hello, world"/>
-   <br />
-   <h:link outcome="admin/admin_index" value="To admin page"/>
-   <br />
-   <h:link outcome="trainer/trainer_index" value="To trainer page"/>
-   <br />
-   <h:link outcome="client/client_index" value="To client page"/>
-   <br />
-   <br />
-   <h:link outcome="#{accountBean.toRegistration()}" value="Registration new account"/>
+   <div class="indexBlock">
+      <h:link outcome="admin/admin_index" value="To admin page"/>
+      <h:link outcome="trainer/trainer_index" value="To trainer page"/>
+      <h:link outcome="client/client_index" value="To client page"/>
+      <br />
+      <h:link styleClass="register" outcome="#{accountBean.toRegistration()}" value="Registration new account"/>
+   </div>
 </h:body>
 </html>
