@@ -10,7 +10,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -37,7 +36,7 @@ public class ClientController {
     }
 
     private void setClient() {
-        String currentLogin = userSession.getUserName();
+        String currentLogin = userSession.getCurrentUser();
         currentClient = clientDao.searchByLogin(currentLogin);
         logger.info("Update current client");
     }

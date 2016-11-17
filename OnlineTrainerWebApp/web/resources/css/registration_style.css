@@ -36,7 +36,7 @@ input[type="submit"] {
 }
 
 .radioBlock {
-    margin-left: 50px;
+    margin-left: 75px;
 }
 
 .radioBlock input~label {

@@ -12,7 +12,7 @@ body {
     box-shadow: 0 0 10px 0 #686868;
 }
 
-input[name="j_username"], input[name="j_password"],input[type="submit"] {
+input[type="text"], input[type="password"], input[type="submit"] {
     border: 0px solid transparent;
     width: 300px;
     height: 30px;
@@ -22,7 +22,7 @@ input[name="j_username"], input[name="j_password"],input[type="submit"] {
 
 }
 
-input[name="j_username"], input[name="j_password"] {
+input[type="text"], input[type="password"] {
     background-color: #F2F2F2;
 }
 
