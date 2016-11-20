@@ -29,14 +29,15 @@ public class Client extends Account {
     }
 
     public void setTrainer(Trainer trainer) {
-        if(trainer == null) {
-            throw new IllegalArgumentException("Argument must be not null!");
+        if (this.trainer != null) {
+            this.trainer.removeClient(this);
         }
-        if(this.trainer != null) {
-            trainer.removeClient(this);
+        if (trainer == null) {
+            this.trainer = null;
+        } else {
+            this.trainer = trainer;
+            this.trainer.addClient(this);
         }
-        this.trainer = trainer;
-        this.trainer.addClient(this);
     }
 
     @Override

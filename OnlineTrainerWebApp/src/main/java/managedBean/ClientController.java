@@ -29,6 +29,8 @@ public class ClientController {
     private UserSession userSession;
     private Client currentClient;
     private double minRating;
+    private double newRating;
+    private boolean isRatingUpdate = false;
 
     public String edit() {
         clientDao.updateObject(currentClient);
@@ -70,6 +72,13 @@ public class ClientController {
         return "trainerPage?faces-redirect=true";
     }
 
+    public String estimateTrainer() {
+        currentClient.getTrainer().setRating(newRating);
+        trainerDao.updateObject(currentClient.getTrainer());
+        isRatingUpdate = false;
+        return "trainerPage?faces-redirect=true";
+    }
+
     public String getDOB() {
         Calendar birth = Calendar.getInstance(Locale.ROOT);
         birth.setTime(currentClient.getDob());
@@ -99,6 +108,22 @@ public class ClientController {
 
     public void setMinRating(double minRating) {
         this.minRating = minRating;
+    }
+
+    public double getNewRating() {
+        return newRating;
+    }
+
+    public void setNewRating(double newRating) {
+        this.newRating = newRating;
+    }
+
+    public boolean isRatingUpdate() {
+        return isRatingUpdate;
+    }
+
+    public void updateRating() {
+        isRatingUpdate = true;
     }
 
     public String toProfile() {

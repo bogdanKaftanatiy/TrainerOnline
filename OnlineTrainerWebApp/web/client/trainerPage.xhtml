@@ -16,7 +16,7 @@
         <div class="leftMenu">
             <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
             <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
-            <p><h:link value="Training list" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
             <p><h:link outcome="/index" value="To Home Page" /></p>
             <h:form>
                 <h:commandLink value="Logout" action="#{userSession.logout()}" />
@@ -26,7 +26,20 @@
             <div>
                 Current trainer: #{clientBean.currentTrainer}
                 <h:form>
-                    <h:commandLink value="Change trainer" action="#{clientBean.toTrainerList()}" />
+                    <h:panelGroup rendered="#{clientBean.isRatingUpdate()}">
+                        <h:outputLabel  value="Rating: " />
+                        <h:inputText id="rating" value="#{clientBean.newRating}" />
+                        <br />
+                        <h:message for="rating" style="color: red;" />
+                        <br />
+                        <h:commandLink value="Update" action="#{clientBean.estimateTrainer()}" />
+                    </h:panelGroup>
+
+                    <h:commandLink
+                            rendered="#{!clientBean.isRatingUpdate() and clientBean.currentClient.trainer != null}"
+                            value="Estimate tainer" action="#{clientBean.updateRating()}" />
+                    <br />
+                    <h:commandLink rendered="#{!clientBean.isRatingUpdate()}" value="Change trainer" action="#{clientBean.toTrainerList()}" />
                 </h:form>
             </div>
         </div>

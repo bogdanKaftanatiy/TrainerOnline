@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Add new training</title>
+    <h:outputStylesheet library="css" name="client_index.css" />
+</h:head>
+
+<h:body>
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
+            <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+
+            <h:form>
+                Date:
+                <h:inputText id="date" value="#{trainingBean.currentTraining.date}">
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:inputText>
+                <h:message for="date" style="color: red;"/>
+                <br />
+                Description: <h:inputTextarea value="#{trainingBean.currentTraining.description}" />
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Duration</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <ui:repeat value="#{trainingBean.currentTraining.exercises.toArray()}" var="exercise">
+                        <tr>
+                            <td>#{exercise.name}</td>
+                            <td>#{exercise.duration}</td>
+                            <td>#{exercise.description}</td>
+                            <td>Be done later</td>
+                        </tr>
+                    </ui:repeat>
+                    <tr>
+                        <td><h:inputText value="#{trainingBean.currentExercise.name}" /></td>
+                        <td>
+                            <h:inputText id="duration" value="#{trainingBean.currentExercise.duration}" />
+                            <h:message for="duration" style="color: red;"/>
+                        </td>
+                        <td><h:inputText value="#{trainingBean.currentExercise.description}" /></td>
+                        <td><h:commandLink value="Add" action="#{trainingBean.addExercise()}"/></td>
+                    </tr>
+                </table>
+                <h:commandLink value="Add training" action="#{trainingBean.addTraining()}" />
+            </h:form>
+        </div>
+    </div>
+</h:body>
+
+</html>

@@ -18,8 +18,14 @@ public abstract class AbstractDAO<DataT> {
     public abstract DataT getObject(int id);
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void updateObject(DataT object) {
-        em.merge(object);
+    public DataT updateObject(DataT object) {
+        DataT result = em.merge(object);
         logger.info("Updated object: " + object);
+        return result;
+    }
+
+    public void deleteObject(int id) {
+        em.remove(getObject(id));
+        logger.info("Deleted object with id=" + id);
     }
 }
