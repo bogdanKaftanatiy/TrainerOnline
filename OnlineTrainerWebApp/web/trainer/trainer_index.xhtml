@@ -13,12 +13,25 @@
 
 <h:body>
     <div class="contentBlock">
-        <h1>Hi trainer!</h1>
-        Current user: #{userSession.currentUser}
-        <p><h:link outcome="/index" value="To Home Page" /></p>
-        <h:form>
-            <h:commandButton value="Logout" action="#{userSession.logout()}" />
-        </h:form>
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Client list" outcome="#{trainingBean.toTrainingsList()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <h1>Hi, #{clientBean.currentClient.name}!</h1>
+            Current user: #{userSession.currentUser}
+            <h1>Hi trainer!</h1>
+            Current user: #{userSession.currentUser}
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandButton value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+
     </div>
 </h:body>
 

@@ -17,14 +17,14 @@
             <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
             <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
             <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
+            <p><h:link value="Schedule" outcome="#{scheduleBean.toSchedule()}" /></p>
             <p><h:link outcome="/index" value="To Home Page" /></p>
             <h:form>
                 <h:commandLink value="Logout" action="#{userSession.logout()}" />
             </h:form>
         </div>
         <div class="dataBlock">
-            <h2 style="padding: 0; margin: 0;">Trainings list</h2>
-            <br />
+            <h2>Trainings list</h2>
             <h:form>
             <ui:repeat value="#{trainingBean.trainingsList}" var="training">
                 #{training.formattedDate} - #{training.description} |

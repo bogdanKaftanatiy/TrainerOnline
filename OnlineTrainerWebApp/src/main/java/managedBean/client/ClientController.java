@@ -1,9 +1,10 @@
-package managedBean;
+package managedBean.client;
 
 import bean.ClientBean;
 import bean.TrainerBean;
 import entity.Client;
 import entity.Trainer;
+import managedBean.UserSession;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;

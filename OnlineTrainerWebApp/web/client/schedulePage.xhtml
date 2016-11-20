@@ -4,14 +4,59 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-    <title>Title</title>
+    <title>Schedule</title>
+    <h:outputStylesheet library="css" name="client_index.css" />
 </h:head>
 
 <h:body>
-    
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
+            <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
+            <p><h:link value="Schedule" outcome="#{scheduleBean.toSchedule()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <h2>Schedule</h2>
+            <h:form>
+                <ui:repeat value="#{scheduleBean.getDaySchedule()}" var="daySchedule" varStatus="status">
+                    #{scheduleBean.getDayName(status.index)} <br />
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <ui:repeat value="#{daySchedule}" var="scheduleUnit">
+                            <tr>
+                                <td>#{scheduleUnit.name}</td>
+                                <td>#{scheduleUnit.description}</td>
+                                <td><h:commandLink value="Delete"
+                                                   action="#{scheduleBean.deleteScheduleUnit(scheduleUnit)}" /></td>
+                            </tr>
+                        </ui:repeat>
+                        <tr>
+                            <td><h:inputText value="#{scheduleBean.scheduleUnits.get(status.index).name}" /></td>
+                            <td><h:inputText value="#{scheduleBean.scheduleUnits.get(status.index).description}" /></td>
+                            <td><h:commandLink value="Add"
+                                               action="#{scheduleBean.addScheduleUnit(status.index)}" /></td>
+                        </tr>
+                    </table>
+                    <br />
+                </ui:repeat>
+            </h:form>
+        </div>
+    </div>
 </h:body>
 
 </html>

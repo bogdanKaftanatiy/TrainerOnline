@@ -33,7 +33,7 @@ public class ScheduleUnitBean extends AbstractDAO<ScheduleUnit> {
         query.setParameter("clientParam", client);
         query.setParameter("weekParam", weekDay);
         List<ScheduleUnit> result = query.getResultList();
-        logger.info("Find " + result.size() + " schedule units for client: " + client);
+        logger.info("Find " + result.size() + " schedule units for client: " + client + ", in day: " + weekDay);
         return  result;
     }
 }

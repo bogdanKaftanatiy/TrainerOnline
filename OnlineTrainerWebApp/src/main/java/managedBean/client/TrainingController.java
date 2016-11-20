@@ -1,4 +1,4 @@
-package managedBean;
+package managedBean.client;
 
 import bean.ExerciseBean;
 import bean.TrainingBean;
