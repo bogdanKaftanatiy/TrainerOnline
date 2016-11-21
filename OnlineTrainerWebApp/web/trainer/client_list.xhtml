@@ -27,10 +27,12 @@
             <ui:repeat value="#{trainerBean.clientList}" var="client" varStatus="status">
                 <div>
                     #{status.index + 1}. #{client.name} #{client.surname} - #{client.age} years old
-                    | Trainings | Messages
                     <h:form>
                         <h:commandLink value="Profile"
-                                  action="#{trainerBean.toClientProfile(trainerBean.clientList.get(status.index))}" />
+                                  action="#{trainerBean.toClientProfile(trainerBean.clientList.get(status.index))}" /> |
+                        <h:commandLink value="Messages"
+                                       action="#{trainerBean.toMessagePage(trainerBean.clientList.get(status.index))}" /> |
+                        Trainings
                     </h:form>
                 </div>
                 <br />

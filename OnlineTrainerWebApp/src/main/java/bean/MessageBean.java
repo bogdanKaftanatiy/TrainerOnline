@@ -26,13 +26,16 @@ public class MessageBean extends AbstractDAO<Message> {
         return result;
     }
 
-    public List<Message> getAccountMessages(Account account) {
+    public List<Message> getAccountMessages(Account fromAccount, Account toAccount) {
         TypedQuery<Message> query =
-                em.createQuery("SELECT m FROM Message m WHERE m.from=:accountParam OR m.to=:accountParam",
+                em.createQuery( "SELECT m FROM Message m " +
+                                "WHERE (m.fromAccount=:fromParam AND m.toAccount=:toParam) " +
+                                "OR (m.fromAccount=:toParam AND m.toAccount=:fromParam)",
                         Message.class);
-        query.setParameter("accountParam", account);
+        query.setParameter("fromParam", fromAccount);
+        query.setParameter("toParam", toAccount);
         List<Message> result = query.getResultList();
-        logger.info("Find " + result.size() + " messages for account: " + account);
+        logger.info("Find " + result.size() + " messages for dialog: " + fromAccount + " and " + toAccount);
         return  result;
     }
 }

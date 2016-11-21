@@ -1,10 +1,12 @@
 package managedBean.trainer;
 
 import bean.ClientBean;
+import bean.MessageBean;
 import bean.TrainerBean;
 import bean.TrainingBean;
 import entity.Account;
 import entity.Client;
+import entity.Message;
 import entity.Trainer;
 import managedBean.UserSession;
 import org.apache.log4j.Logger;
@@ -14,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,8 +35,41 @@ public class TrainerController {
     private ClientBean clientDao;
     @EJB
     private TrainingBean trainingDao;
+    @EJB
+    private MessageBean messageDao;
     private Trainer currentTrainer;
     private Client currentClient = new Client();
+    private String inputMessage;
+
+    public String sendMessage() {
+        Message message = new Message();
+        message.setMessage(inputMessage);
+        message.setDate(new Date());
+        message.setRead(false);
+        message.setFromAccount(currentTrainer);
+        message.setToAccount(currentClient);
+        messageDao.updateObject(message);
+        inputMessage = "";
+        return "messages_page";
+    }
+
+    public List<Message> getUserMessages() {
+        List<Message> result = messageDao.getAccountMessages(getCurrentTrainer(), getCurrentClient());
+        for (Message m : result) {
+            if (m.getToAccount().equals(this.getCurrentTrainer())) {
+                m.setRead(true);
+                messageDao.updateObject(m);
+            }
+        }
+        return result;
+    }
+
+    public String getSender(Message message) {
+        if(message.getFromAccount().equals(this.getCurrentTrainer()))
+            return "You";
+        else
+            return message.getFromAccount().getName();
+    }
 
     public String edit() {
         trainerDao.updateObject(currentTrainer);
@@ -73,11 +109,13 @@ public class TrainerController {
         this.userSession = userSession;
     }
 
-    public String getDOB(Account account) {
-        Calendar birth = Calendar.getInstance(Locale.ROOT);
-        birth.setTime(account.getDob());
-        String result = birth.get(Calendar.DATE) + "." + (birth.get(Calendar.MONTH) + 1) +
-                "." + birth.get(Calendar.YEAR);
+
+
+    public String convertDateToString(Date date) {
+        Calendar calendar = Calendar.getInstance(Locale.ROOT);
+        calendar.setTime(date);
+        String result = calendar.get(Calendar.DATE) + "." + (calendar.get(Calendar.MONTH) + 1) +
+                "." + calendar.get(Calendar.YEAR);
         return result;
     }
 
@@ -87,6 +125,14 @@ public class TrainerController {
 
     public void setCurrentClient(Client currentClient) {
         this.currentClient = currentClient;
+    }
+
+    public String getInputMessage() {
+        return inputMessage;
+    }
+
+    public void setInputMessage(String inputMessage) {
+        this.inputMessage = inputMessage;
     }
 
     public String toClientProfile(Client client) {
@@ -104,5 +150,11 @@ public class TrainerController {
 
     public String toEditProfile() {
         return "edit_profile";
+    }
+
+    public String toMessagePage(Client client) {
+        currentClient = client;
+        inputMessage = "";
+        return "messages_page";
     }
 }

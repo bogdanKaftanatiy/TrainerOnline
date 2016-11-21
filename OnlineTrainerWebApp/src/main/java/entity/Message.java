@@ -21,12 +21,12 @@ public class Message implements Serializable {
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "from")
-    private Account from;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "to")
-    private Account to;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fromAccount")
+    private Account fromAccount;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "toAccount")
+    private Account toAccount;
 
     public Message() {
         this.isRead = false;
@@ -35,8 +35,8 @@ public class Message implements Serializable {
     public Message(String message, Date date, Account from, Account to) {
         this.message = message;
         this.date = date;
-        this.from = from;
-        this.to = to;
+        this.fromAccount = from;
+        this.toAccount = to;
         this.isRead = false;
     }
 
@@ -77,20 +77,20 @@ public class Message implements Serializable {
         this.date = date;
     }
 
-    public Account getFrom() {
-        return from;
+    public Account getFromAccount() {
+        return fromAccount;
     }
 
-    public void setFrom(Account from) {
-        this.from = from;
+    public void setFromAccount(Account fromAccount) {
+        this.fromAccount = fromAccount;
     }
 
-    public Account getTo() {
-        return to;
+    public Account getToAccount() {
+        return toAccount;
     }
 
-    public void setTo(Account to) {
-        this.to = to;
+    public void setToAccount(Account to) {
+        this.toAccount = to;
     }
 
     @Override
@@ -104,8 +104,8 @@ public class Message implements Serializable {
         if (isRead != message1.isRead) return false;
         if (message != null ? !message.equals(message1.message) : message1.message != null) return false;
         if (date != null ? !date.equals(message1.date) : message1.date != null) return false;
-        if (from != null ? !from.equals(message1.from) : message1.from != null) return false;
-        return to != null ? to.equals(message1.to) : message1.to == null;
+        if (fromAccount != null ? !fromAccount.equals(message1.fromAccount) : message1.fromAccount != null) return false;
+        return toAccount != null ? toAccount.equals(message1.toAccount) : message1.toAccount == null;
 
     }
 
@@ -115,8 +115,8 @@ public class Message implements Serializable {
         result = 31 * result + (isRead ? 1 : 0);
         result = 31 * result + (message != null ? message.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (from != null ? from.hashCode() : 0);
-        result = 31 * result + (to != null ? to.hashCode() : 0);
+        result = 31 * result + (fromAccount != null ? fromAccount.hashCode() : 0);
+        result = 31 * result + (toAccount != null ? toAccount.hashCode() : 0);
         return result;
     }
 
@@ -127,8 +127,8 @@ public class Message implements Serializable {
                 ", isRead=" + isRead +
                 ", message='" + message + '\'' +
                 ", date=" + date +
-                ", from=" + from +
-                ", to=" + to +
+                ", from=" + fromAccount +
+                ", to=" + toAccount +
                 '}';
     }
 }

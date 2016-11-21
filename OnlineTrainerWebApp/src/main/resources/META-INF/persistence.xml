@@ -11,7 +11,7 @@
 
         <properties>
             <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
-            <property name="dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="dialect" value="org.hibernate.dialect.MySQL5Dialect" />
             <property name="hbm2ddl.auto" value="create"/>
         </properties>
     </persistence-unit>

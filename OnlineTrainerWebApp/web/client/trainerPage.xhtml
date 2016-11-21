@@ -26,10 +26,11 @@
         <div class="dataBlock">
             <div>
                 Current trainer: #{clientBean.currentTrainer}
+                <h:link value="Messages" outcome="#{clientBean.toMessagePage()}" />
                 <h:form>
                     <h:panelGroup rendered="#{clientBean.isRatingUpdate()}">
                         <h:outputLabel  value="Rating: " />
-                        <h:inputText id="rating" value="#{clientBean.newRating}" />
+                        <h:inputText id="rating" value="#{clientBean.inputRating}" />
                         <br />
                         <h:message for="rating" style="color: red;" />
                         <br />

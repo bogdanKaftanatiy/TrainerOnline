@@ -8,34 +8,35 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-    <title>Messages</title>
-    <h:outputStylesheet library="css" name="trainer_index.css" />
+    <title>Messages page</title>
+    <h:outputStylesheet library="css" name="client_index.css" />
 </h:head>
 
 <h:body>
     <div class="contentBlock">
         <div class="leftMenu">
-            <p><h:link value="Profile" outcome="#{trainerBean.toProfile()}" /></p>
-            <p><h:link value="Client list" outcome="#{trainerBean.toClientList()}" /></p>
+            <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
+            <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
+            <p><h:link value="Schedule" outcome="#{scheduleBean.toSchedule()}" /></p>
             <p><h:link outcome="/index" value="To Home Page" /></p>
             <h:form>
                 <h:commandLink value="Logout" action="#{userSession.logout()}" />
             </h:form>
         </div>
         <div class="dataBlock">
-            <h2>Dialog with #{trainerBean.currentClient.name}</h2>
-            <ui:repeat value="#{trainerBean.userMessages}" var="message" varStatus="status">
+            <h2>Dialog with #{clientBean.currentClient.trainer.name}</h2>
+            <ui:repeat value="#{clientBean.userMessages}" var="message" varStatus="status">
                 <div>
-                    #{trainerBean.getSender(message)}: #{message.message} -
+                    #{clientBean.getSender(message)}: #{message.message} -
                     #{message.date.date}.#{message.date.month}.#{message.date.year}
                 </div>
             </ui:repeat>
             <h:form>
-                <h:inputTextarea value="#{trainerBean.inputMessage}" />
-                <h:commandButton value="Send" action="#{trainerBean.sendMessage()}" />
+                <h:inputTextarea value="#{clientBean.inputMessage}" />
+                <h:commandButton value="Send" action="#{clientBean.sendMessage()}" />
             </h:form>
         </div>
-
     </div>
 </h:body>
 
