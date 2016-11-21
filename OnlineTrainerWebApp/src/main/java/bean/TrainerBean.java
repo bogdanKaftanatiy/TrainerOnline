@@ -44,4 +44,17 @@ public class TrainerBean extends AbstractDAO<Trainer> {
         }
         return result;
     }
+
+    public Trainer searchByLogin(String login) {
+        TypedQuery<Trainer> query = em.createQuery("SELECT t FROM Trainer t WHERE t.login=:loginParam", Trainer.class);
+        query.setParameter("loginParam", login);
+        List<Trainer> array = query.getResultList();
+        if(array==null || array.isEmpty()){
+            logger.warn("Trainer with login='" + login + "' not exist");
+            return null;
+        } else {
+            logger.info("Find trainer with login=" + login);
+            return array.get(0);
+        }
+    }
 }

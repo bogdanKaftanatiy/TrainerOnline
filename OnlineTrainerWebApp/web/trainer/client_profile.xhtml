@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>#{trainerBean.currentClient.name} profile</title>
+    <h:outputStylesheet library="css" name="trainer_index.css" />
+</h:head>
+
+<h:body>
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{trainerBean.toProfile()}" /></p>
+            <p><h:link value="Client list" outcome="#{trainerBean.toClientList()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <h2>#{trainerBean.currentClient.name} profile</h2>
+            <table>
+                <tr>
+                    <td>Name: </td>
+                    <td>#{trainerBean.currentClient.name}</td>
+                </tr>
+                <tr>
+                    <td>Surname: </td>
+                    <td>#{trainerBean.currentClient.surname}</td>
+                </tr>
+                <tr>
+                    <td>Date of birth: </td>
+                    <td>#{trainerBean.getDOB(trainerBean.currentClient)}</td>
+                </tr>
+                <tr>
+                    <td>Trainings count: </td>
+                    <td>#{trainerBean.currentClientTrainingsCount}</td>
+                </tr>
+            </table>
+            <h:link value="Client list" outcome="#{trainerBean.toClientList()}" />
+        </div>
+    </div>
+</h:body>
+
+</html>

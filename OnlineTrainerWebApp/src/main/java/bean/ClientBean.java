@@ -1,6 +1,7 @@
 package bean;
 
 import entity.Client;
+import entity.Trainer;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -37,5 +38,15 @@ public class ClientBean extends AbstractDAO<Client> {
             logger.info("Find client with login=" + login);
             return array.get(0);
         }
+    }
+
+    public List<Client> trainerClients(Trainer trainer) {
+        TypedQuery<Client> query =
+                em.createQuery("SELECT c FROM Client c WHERE c.trainer=:trainerParam",
+                        Client.class);
+        query.setParameter("trainerParam", trainer);
+        List<Client> result = query.getResultList();
+        logger.info("Find " + result.size() + " clients for trainer: " + trainer);
+        return  result;
     }
 }

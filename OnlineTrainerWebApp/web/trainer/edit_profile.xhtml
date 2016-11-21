@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Edit profile</title>
+    <h:outputStylesheet library="css" name="trainer_index.css" />
+</h:head>
+
+<h:body>
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{trainerBean.toProfile()}" /></p>
+            <p><h:link value="Client list" outcome="#{trainerBean.toClientList()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <h2>Your profile</h2>
+            <h:form>
+                <table>
+                    <tr>
+                        <td>Login: </td>
+                        <td><h:inputText value="#{trainerBean.currentTrainer.login}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password: </td>
+                        <td><h:inputText value="#{trainerBean.currentTrainer.password}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Name: </td>
+                        <td><h:inputText value="#{trainerBean.currentTrainer.name}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Surname: </td>
+                        <td><h:inputText value="#{trainerBean.currentTrainer.surname}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Date of birth: </td>
+                        <td>
+                            <h:inputText id="dob" value="#{trainerBean.currentTrainer.dob}">
+                                <f:convertDateTime pattern="dd-MM-yyyy" />
+                            </h:inputText>
+                            <h:message for="dob" style="color: red;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description: </td>
+                        <td><h:inputTextarea value="#{trainerBean.currentTrainer.description}" /></td>
+                    </tr>
+                </table>
+                <h:commandLink value="Edit" action="#{trainerBean.edit()}" />
+            </h:form>
+        </div>
+
+    </div>
+</h:body>
+
+</html>

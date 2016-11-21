@@ -7,17 +7,15 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-    <title>Client profile</title>
-    <h:outputStylesheet library="css" name="client_index.css" />
+    <title>Trainer profile</title>
+    <h:outputStylesheet library="css" name="trainer_index.css" />
 </h:head>
 
 <h:body>
     <div class="contentBlock">
         <div class="leftMenu">
-            <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
-            <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
-            <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
-            <p><h:link value="Schedule" outcome="#{scheduleBean.toSchedule()}" /></p>
+            <p><h:link value="Profile" outcome="#{trainerBean.toProfile()}" /></p>
+            <p><h:link value="Client list" outcome="#{trainerBean.toClientList()}" /></p>
             <p><h:link outcome="/index" value="To Home Page" /></p>
             <h:form>
                 <h:commandLink value="Logout" action="#{userSession.logout()}" />
@@ -28,29 +26,34 @@
             <table>
                 <tr>
                     <td>Login: </td>
-                    <td>#{clientBean.currentClient.login}</td>
+                    <td>#{trainerBean.currentTrainer.login}</td>
                 </tr>
                 <tr>
                     <td>Password: </td>
-                    <td>#{clientBean.currentClient.password}</td>
+                    <td>#{trainerBean.currentTrainer.password}</td>
                 </tr>
                 <tr>
                     <td>Name: </td>
-                    <td>#{clientBean.currentClient.name}</td>
+                    <td>#{trainerBean.currentTrainer.name}</td>
                 </tr>
                 <tr>
                     <td>Surname: </td>
-                    <td>#{clientBean.currentClient.surname}</td>
+                    <td>#{trainerBean.currentTrainer.surname}</td>
                 </tr>
                 <tr>
                     <td>Date of birth: </td>
-                    <td>#{clientBean.DOB}</td>
+                    <td>#{trainerBean.getDOB(trainerBean.currentTrainer)}</td>
+                </tr>
+                <tr>
+                    <td>Description: </td>
+                    <td>#{trainerBean.currentTrainer.description}</td>
                 </tr>
             </table>
             <h:form>
-                <h:commandLink value="Edit" action="#{clientBean.toEdit()}" />
+                <h:commandLink value="Edit" action="#{trainerBean.toEditProfile()}" />
             </h:form>
         </div>
+
     </div>
 </h:body>
 
