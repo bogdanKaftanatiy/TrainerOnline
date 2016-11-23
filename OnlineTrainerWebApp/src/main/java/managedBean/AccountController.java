@@ -16,6 +16,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 /**
@@ -40,25 +41,28 @@ public class AccountController {
     private String role;
 
 
-    public String insert() {
+    public String insert() throws NoSuchAlgorithmException {
         switch (role) {
             case "client":
                 Client client = new Client(login, password, name, surname, dob);
+                client.setPassword(password);
                 clientDao.updateObject(client);
                 break;
             case "trainer":
                 Trainer trainer = new Trainer(login, password, name, surname, dob);
+                trainer.setPassword(password);
                 trainerDao.updateObject(trainer);
                 break;
             case "admin":
                 Admin admin = new Admin(login, password, name, surname, dob);
+                admin.setPassword(password);
                 adminDao.updateObject(admin);
                 break;
             default:
                 logger.error("Illegal account role!");
                 break;
         }
-        return "index?faces-redirect=true";
+        return "/index?faces-redirect=true";
     }
 
     public String toRegistration() {

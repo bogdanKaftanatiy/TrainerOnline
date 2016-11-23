@@ -8,6 +8,7 @@ import java.util.Date;
  */
 @Entity
 @DiscriminatorValue("CLIENT")
+@NamedQuery(name = "Client.getAll", query = "SELECT c FROM Client c")
 public class Client extends Account {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "trainerID")

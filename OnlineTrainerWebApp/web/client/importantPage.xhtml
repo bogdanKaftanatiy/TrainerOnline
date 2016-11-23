@@ -4,11 +4,10 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-    <title>Messages page</title>
+    <title>Important page</title>
     <h:outputStylesheet library="css" name="client_index.css" />
 </h:head>
 
@@ -26,17 +25,7 @@
             </h:form>
         </div>
         <div class="dataBlock">
-            <h2>Dialog with #{clientBean.currentClient.trainer.name}</h2>
-            <ui:repeat value="#{clientBean.userMessages}" var="message" varStatus="status">
-                <div>
-                    #{clientBean.getSender(message)}: #{message.message} -
-                    #{message.date.date}.#{message.date.month}.#{message.date.year}
-                </div>
-            </ui:repeat>
-            <h:form>
-                <h:inputTextarea value="#{clientBean.inputMessage}" />
-                <h:commandButton value="Send" action="#{clientBean.sendMessage()}" />
-            </h:form>
+            Important info: #{jmsReceiver.receiveMessage()}
         </div>
     </div>
 </h:body>

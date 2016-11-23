@@ -18,6 +18,7 @@
             <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
             <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
             <p><h:link value="Schedule" outcome="#{scheduleBean.toSchedule()}" /></p>
+            <p><h:link value="Important information" outcome="importantPage" /></p>
             <p><h:link outcome="/index" value="To Home Page" /></p>
             <h:form>
                 <h:commandLink value="Logout" action="#{userSession.logout()}" />
@@ -29,10 +30,6 @@
                 <tr>
                     <td>Login: </td>
                     <td>#{clientBean.currentClient.login}</td>
-                </tr>
-                <tr>
-                    <td>Password: </td>
-                    <td>#{clientBean.currentClient.password}</td>
                 </tr>
                 <tr>
                     <td>Name: </td>

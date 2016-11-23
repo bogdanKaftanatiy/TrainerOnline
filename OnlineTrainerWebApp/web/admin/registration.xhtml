@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <title>Registration new account</title>
+    <h:outputStylesheet library="css" name="registration_style.css" />
+</h:head>
+
+<h:body>
+    <h:form styleClass="registerForm">
+        <h:panelGrid columns="1" id="RegisterGroupPanel" styleClass="registerGroup">
+            <f:event listener="#{accountBean.validateFrom}" type="postValidate" />
+            <h:panelGroup>
+                <h:inputText id="login" a:placeholder="Login" value="#{accountBean.login}"/>*
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:inputSecret id="pass" a:placeholder="Password" value="#{accountBean.password}"/>*
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:inputText id="name" a:placeholder="Name" value="#{accountBean.name}"/>*
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:inputText id="surname" a:placeholder="Surname" value="#{accountBean.surname}"/>*
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:inputText a:placeholder="Date of born" id="dateInput" value="#{accountBean.dob}" label="Date">
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:inputText>
+                <br />
+                <h:message for="dateInput" style="color:red" />
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:selectOneRadio id="radio" required="true" styleClass="radioBlock" value="#{accountBean.role}">
+                    <f:selectItem itemValue="client" itemLabel="Client" />
+                    <f:selectItem itemValue="trainer" itemLabel="Trainer" />
+                    <f:selectItem itemValue="admin" itemLabel="Admin" />
+                </h:selectOneRadio>
+                <br />
+                <h:message for="radio" style="color: red;" />
+            </h:panelGroup>
+        </h:panelGrid>
+        <h:message for="RegisterGroupPanel" style="color: red;" />
+        <h:commandButton value="Registration" action="#{accountBean.insert()}" />
+    </h:form>
+</h:body>
+
+</html>

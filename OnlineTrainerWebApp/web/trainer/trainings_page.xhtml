@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Client trainings page</title>
+    <h:outputStylesheet library="css" name="trainer_index.css" />
+</h:head>
+
+<h:body>
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Profile" outcome="#{trainerBean.toProfile()}" /></p>
+            <p><h:link value="Client list" outcome="#{trainerBean.toClientList()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <h2>#{trainerBean.currentClient.name} trainings list</h2>
+            <h:form>
+                <ui:repeat value="#{trainerBean.trainingsList}" var="training">
+                    #{training.formattedDate} - #{training.description}
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Duration</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <ui:repeat value="#{training.exercises.toArray()}" var="exercise">
+                            <tr>
+                                <td>#{exercise.name}</td>
+                                <td>#{exercise.duration}</td>
+                                <td>#{exercise.description}</td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                    <br />
+                </ui:repeat>
+                <h:link outcome="#{trainerBean.toClientList()}" value="Client list" />
+            </h:form>
+        </div>
+
+    </div>
+</h:body>
+
+</html>

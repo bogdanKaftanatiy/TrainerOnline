@@ -18,6 +18,7 @@
             <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
             <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
             <p><h:link value="Schedule" outcome="#{scheduleBean.toSchedule()}" /></p>
+            <p><h:link value="Important information" outcome="importantPage" /></p>
             <p><h:link outcome="/index" value="To Home Page" /></p>
             <h:form>
                 <h:commandLink value="Logout" action="#{userSession.logout()}" />
@@ -26,7 +27,7 @@
         <div class="dataBlock">
             <div>
                 Current trainer: #{clientBean.currentTrainer}
-                <h:link value="Messages" outcome="#{clientBean.toMessagePage()}" />
+                <h:link rendered="#{clientBean.currentClient.trainer != null}" value="Messages" outcome="#{clientBean.toMessagePage()}" />
                 <h:form>
                     <h:panelGroup rendered="#{clientBean.isRatingUpdate()}">
                         <h:outputLabel  value="Rating: " />

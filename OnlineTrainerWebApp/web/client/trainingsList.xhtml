@@ -4,7 +4,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <h:head>
     <title>List of trainings</title>
@@ -18,6 +19,7 @@
             <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
             <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
             <p><h:link value="Schedule" outcome="#{scheduleBean.toSchedule()}" /></p>
+            <p><h:link value="Important information" outcome="importantPage" /></p>
             <p><h:link outcome="/index" value="To Home Page" /></p>
             <h:form>
                 <h:commandLink value="Logout" action="#{userSession.logout()}" />

@@ -32,7 +32,8 @@
                                   action="#{trainerBean.toClientProfile(trainerBean.clientList.get(status.index))}" /> |
                         <h:commandLink value="Messages"
                                        action="#{trainerBean.toMessagePage(trainerBean.clientList.get(status.index))}" /> |
-                        Trainings
+                        <h:commandLink value="Trainings"
+                                       action="#{trainerBean.toTrainingsPage(trainerBean.clientList.get(status.index))}" />
                     </h:form>
                 </div>
                 <br />

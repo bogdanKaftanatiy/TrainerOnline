@@ -15,7 +15,8 @@
       <br />
       <h:link rendered="#{!userSession.isLogin()}" outcome="/login" value="Login"/>
       <br />
-      <h:link rendered="#{!userSession.isLogin()}" styleClass="register" outcome="#{accountBean.toRegistration()}" value="Registration new account"/>
+      <h:link rendered="#{!userSession.isLogin()}" styleClass="register"
+              outcome="#{accountBean.toRegistration()}" value="Registration new account"/>
    </div>
 </h:body>
 </html>

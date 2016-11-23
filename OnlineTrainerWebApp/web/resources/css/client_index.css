@@ -5,8 +5,9 @@ body {
 
 .contentBlock {
     background-color: white;
-    width: 700px;
-    margin: 150px auto;
+    width: 1000px;
+    margin: 10px auto;
+    min-height: 600px;
     padding: 20px;
     box-shadow: 0 0 10px 0 #686868;
 }

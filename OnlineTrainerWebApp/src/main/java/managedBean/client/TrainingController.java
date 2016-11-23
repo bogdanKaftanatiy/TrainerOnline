@@ -30,6 +30,7 @@ public class TrainingController {
 
     public String addExercise() {
         currentTraining = trainingDao.updateObject(currentTraining);
+        currentExercise = exerciseDao.updateObject(currentExercise);
         currentTraining.addExercise(currentExercise);
         exerciseDao.updateObject(currentExercise);
         currentExercise = new Exercise();
@@ -43,8 +44,15 @@ public class TrainingController {
     }
 
     public String deleteTraining(Training training) {
+        currentTraining.getExercises().remove(training);
         trainingDao.deleteObject(training.getId());
+        currentExercise = new Exercise();
         return "trainingsList?faces-redirect=true";
+    }
+
+    public String deleteExercise(Exercise exercise) {
+        exerciseDao.deleteObject(exercise.getId());
+        return "addTrainings";
     }
 
     public String toTrainingsList() {

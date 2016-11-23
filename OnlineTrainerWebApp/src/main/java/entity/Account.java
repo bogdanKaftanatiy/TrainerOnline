@@ -2,6 +2,9 @@ package entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -18,7 +21,7 @@ public abstract class Account implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected long id;
+    protected int id;
     @Column(name = "login")
     protected String login;
     @Column(name = "password")
@@ -34,11 +37,11 @@ public abstract class Account implements Serializable {
     public Account() {
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -54,8 +57,18 @@ public abstract class Account implements Serializable {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) throws NoSuchAlgorithmException {
+        this.password = getEncodedPassword(password);
+    }
+
+    private static String getEncodedPassword(String password) throws NoSuchAlgorithmException {
+        return new String(Base64.getEncoder().encode(encryption(password)));
+    }
+
+    private static byte[] encryption(String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(password.getBytes());,
+        return md.digest();
     }
 
     public String getName() {

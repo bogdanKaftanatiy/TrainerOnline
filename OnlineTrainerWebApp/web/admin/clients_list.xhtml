@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Clients list</title>
+    <h:outputStylesheet library="css" name="admin_index.css" />
+</h:head>
+
+<h:body>
+    <div class="contentBlock">
+        <div class="leftMenu">
+            <p><h:link value="Clients list" outcome="#{adminBean.toClientsList()}" /></p>
+            <p><h:link value="Trainers list" outcome="#{adminBean.toTrainersList()}" /></p>
+            <p><h:link value="Register new account" outcome="#{adminBean.toRegistration()}" /></p>
+            <p><h:link outcome="/index" value="To Home Page" /></p>
+            <h:form>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <h1>Clients list</h1>
+            <h:form>
+                <h:dataTable value="#{adminBean.clientsList}" var="client">
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{client.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Surname</f:facet>
+                        #{client.surname}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">login</f:facet>
+                        #{client.login}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Age</f:facet>
+                        #{client.age}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Trainer</f:facet>
+                        #{client.trainer.name} #{client.trainer.surname}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Action</f:facet>
+                        <h:commandLink value="Delete" action="#{adminBean.deleteClient(client)}" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+    </div>
+</h:body>
+
+</html>

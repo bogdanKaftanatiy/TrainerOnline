@@ -57,7 +57,7 @@ public class Training implements Serializable {
     public String getFormattedDate() {
         Calendar calendarDate = Calendar.getInstance(Locale.ROOT);
         calendarDate.setTime(date);
-        String result = calendarDate.get(Calendar.DATE) + "." + calendarDate.get(Calendar.MONTH) + "."
+        String result = calendarDate.get(Calendar.DAY_OF_MONTH) + "." + (calendarDate.get(Calendar.MONTH) + 1) + "."
                 + calendarDate.get(Calendar.YEAR);
         return result;
     }

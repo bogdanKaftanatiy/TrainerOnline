@@ -49,4 +49,13 @@ public class ClientBean extends AbstractDAO<Client> {
         logger.info("Find " + result.size() + " clients for trainer: " + trainer);
         return  result;
     }
+
+    public List<Client> getAllClients() {
+        TypedQuery<Client> query = em.createNamedQuery("Client.getAll", Client.class);
+        List<Client> result = query.getResultList();
+
+        logger.info("Get all client");
+
+        return result;
+    }
 }

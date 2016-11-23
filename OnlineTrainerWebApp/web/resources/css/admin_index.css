@@ -4,8 +4,37 @@ body {
 
 .contentBlock {
     background-color: white;
-    width: 500px;
-    margin: 200px auto;
+    width: 1000px;
+    margin: 10px auto;
+    min-height: 600px;
     padding: 20px;
     box-shadow: 0 0 10px 0 #686868;
+}
+
+.leftMenu {
+    width: 25%;
+}
+
+.dataBlock {
+    width: 65%;
+    padding: 15px 4% 10px 5%;
+}
+
+.leftMenu, .dataBlock {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.leftMenu a {
+    display: block;
+    margin: 5px;
+    padding: 5px 20px;
+    background-color: #74C35A;
+    text-decoration: none;
+    border-radius: 2px;
+    color: white;
+}
+
+.leftMenu a:hover {
+    background-color: #39881F;
 }

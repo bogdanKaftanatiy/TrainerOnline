@@ -15,9 +15,10 @@
     <div class="contentBlock">
         <div class="leftMenu">
             <p><h:link value="Profile" outcome="#{clientBean.toProfile()}" /></p>
-            <p><h:link value="Trainer" outcome="#{clientBean.toProfile()}" /></p>
+            <p><h:link value="Trainer" outcome="#{clientBean.toTrainerPage()}" /></p>
             <p><h:link value="Training list" outcome="#{trainingBean.toTrainingsList()}" /></p>
             <p><h:link value="Schedule" outcome="#{scheduleBean.toSchedule()}" /></p>
+            <p><h:link value="Important information" outcome="importantPage" /></p>
             <p><h:link outcome="/index" value="To Home Page" /></p>
             <h:form>
                 <h:commandLink value="Logout" action="#{userSession.logout()}" />

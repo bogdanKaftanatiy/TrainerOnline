@@ -13,12 +13,20 @@
 
 <h:body>
     <div class="contentBlock">
-        <h1>Hi admin!</h1>
-        Current user: #{userSession.currentUser}
-        <p><h:link outcome="/index" value="To Home Page" /></p>
-        <h:form>
-            <h:commandButton value="Logout" action="#{userSession.logout()}" />
-        </h:form>
+        <div class="leftMenu">
+            <p><h:link value="Clients list" outcome="#{adminBean.toClientsList()}" /></p>
+            <p><h:link value="Trainers list" outcome="#{adminBean.toTrainersList()}" /></p>
+            <p><h:link value="Register new account" outcome="#{adminBean.toRegistration()}" /></p>
+            <h:form>
+                <h:commandLink value="Send important information" action="#{jmsService.sendMessage()}" />
+                <p><h:link outcome="/index" value="To Home Page" /></p>
+                <h:commandLink value="Logout" action="#{userSession.logout()}" />
+            </h:form>
+        </div>
+        <div class="dataBlock">
+            <h1>Hi admin!</h1>
+            Current user: #{userSession.currentUser}
+        </div>
     </div>
 </h:body>
 

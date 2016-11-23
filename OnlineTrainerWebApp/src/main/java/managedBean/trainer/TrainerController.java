@@ -4,10 +4,7 @@ import bean.ClientBean;
 import bean.MessageBean;
 import bean.TrainerBean;
 import bean.TrainingBean;
-import entity.Account;
-import entity.Client;
-import entity.Message;
-import entity.Trainer;
+import entity.*;
 import managedBean.UserSession;
 import org.apache.log4j.Logger;
 
@@ -119,6 +116,10 @@ public class TrainerController {
         return result;
     }
 
+    public List<Training> getTrainingsList() {
+        return trainingDao.getClientTrainings(currentClient);
+    }
+
     public Client getCurrentClient() {
         return currentClient;
     }
@@ -156,5 +157,10 @@ public class TrainerController {
         currentClient = client;
         inputMessage = "";
         return "messages_page";
+    }
+
+    public String toTrainingsPage(Client client) {
+        currentClient = client;
+        return "trainings_page";
     }
 }

@@ -27,7 +27,8 @@
         <h:message for="password" />
         <br />
         <h:commandButton action="#{userSession.login()}" value="Login" />
-        <p class="createAccount">Not registered? <a href="${pageContext.request.contextPath}/registration.xhtml">Create an account</a></p>
+        <p class="createAccount">Not registered? <h:link rendered="#{!userSession.isLogin()}"
+                                                         outcome="#{accountBean.toRegistration()}" value="Create new account"/></p>
     </h:form>
 </h:body>
 
