@@ -67,7 +67,7 @@ public abstract class Account implements Serializable {
 
     private static byte[] encryption(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
-        md.update(password.getBytes());,
+        md.update(password.getBytes());
         return md.digest();
     }
 
